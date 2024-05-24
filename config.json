@@ -1,0 +1,12 @@
+{
+    "SECRET_KEY": "24a9fc6ae31add4b0431bb399eac3d1428480550f8e45f5c3cf78c53bf610ca3",
+    "DEBUG": true,
+    "ALLOWED_HOSTS": ["127.0.0.1"],
+    "EMAIL_BACKEND": "django.core.mail.backends.smtp.EmailBackend",
+    "EMAIL_HOST": "smtp.gmail.com",
+    "EMAIL_USE_TLS": true,
+    "EMAIL_PORT": 587,
+    "EMAIL_HOST_USER": "",
+    "EMAIL_HOST_PASSWORD": "",
+    "HOST_ADDRESS ": "127.0.0.1:8000"
+}
