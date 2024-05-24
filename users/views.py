@@ -1,44 +1,42 @@
 from django.shortcuts import redirect, render
-from .forms import regForm
 from django.contrib.auth.models import User
 from django.contrib import messages
-
-# Create your views here.
-def ilogin(request):
-    return render(request, 'users/login.html')
+from django.contrib.auth import login
 
 def iregister(request):
-    if request.method =="POST":
+    if request.method == "POST":
         name = request.POST['name']
         email = request.POST['email']
         pass1 = request.POST['pass1']
         pass2 = request.POST['pass2']
-        user = User.objects.create_user(name, email,pass1)
-        #Check if passwords match
-        if pass1 != pass2 :
-            messages.error(request, "Passwords do not match")
-            return render(request, 'users/register.html')
-        
-        #check if email exists
-        if User.objects.filter(email = email).first():
-            messages.error(request, "An account with this email already exists")
-            return render(request, 'users/register.html')
-        if User.objects.filter(name =name).first():
-            messages.error(request, "This username is already taken")
-            return redirect('users-register')
-        
-        #user=User.objects.create_user(name=name, email=email,password=pass1)
-        #user creation
-        try:
-            user=User.objects.create_user(name=name, email=email,password=pass1)
-            user.save()
-            messages.success(request, "Account created successfully for {{name.name}}")
-            #Takes user to login page
-            return redirect('users-login')
-        except Exception as e:
-            messages.error (request, f'An error occured:{e}')
+
+        # Validate passwords
+        if pass1 != pass2:
+            messages.error(request, "Passwords do not match. Please try again.")
             return render(request, 'users/register.html')
 
-        # if user_exists:
-        #     messages.error(request, 'Member with that email already exists')
-    return render(request, 'users/register.html')
+        # Check for existing email
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "An account with this email already exists. Please choose a unique email address.")
+            return render(request, 'users/register.html')
+
+        # Create user with proper username validation (avoid spaces or special characters)
+        username = name.strip()  # Remove leading/trailing whitespaces
+        if not username or username.isalnum():  # Check for alphanumeric characters only
+            messages.error(request, "Invalid username. Usernames cannot be empty or contain special characters.")
+            return render(request, 'users/register.html')
+
+        user = User.objects.create_user(username=username, email=email, password=pass1)
+        user.save()
+        return redirect('users-login')
+
+        # Authenticate and log in the newly created user (optional)
+        # user = authenticate(username=username, password=pass1)
+        # if user is not None:
+        #     login(request, user)
+        #     return redirect('users-login')  # Assuming you have a 'login' URL pattern
+    else:
+        return render(request, 'users/register.html')
+
+def ilogin(request):
+    return render(request, 'users/login.html')
