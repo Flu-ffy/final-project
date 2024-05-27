@@ -2,9 +2,11 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import login
+from users.forms import regForm
 
 def iregister(request):
     if request.method == "POST":
+        form= regForm(request.POST)
         name = request.POST['name']
         email = request.POST['email']
         pass1 = request.POST['pass1']
