@@ -42,3 +42,4 @@ def iregister(request):
         # if user_exists:
         #     messages.error(request, 'Member with that email already exists')
     return render(request, 'users/register.html')
+

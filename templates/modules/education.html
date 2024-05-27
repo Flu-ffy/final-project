@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICT AUTHORITY</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body class="container mt-5">
+    <button id="educationButton" class="btn btn-primary mb-3">Education</button>
+    <div id="educationForm" class="card p-3" style="display: none;">
+        <form>
+            <div class="form-group">
+                <label for="education-level">Education Level:</label>
+                <select id="education-level" name="education-level" class="form-control" onchange="showCourseInput()">
+                    <option value="">--Select your education level--</option>
+                    <option value="diploma">Diploma</option>
+                    <option value="degree">Degree</option>
+                    <option value="masters">Masters</option>
+                    <option value="phd">PhD</option>
+                </select>
+            </div>
+            <div class="form-group" id="course-input-group" style="display: none;">
+                <label for="course">Course Pursued:</label>
+                <input type="text" id="course" name="course" class="form-control" placeholder="Enter your course">
+            </div>
+            <div class="form-group">
+                <label for="institution">Which institution did you study in:</label>
+                <input list="institutions" placeholder="Type in your institution" name="institution" id="institution" class="form-control">
+                <datalist id="institutions">
+                    <option value="Adventist University of Africa">
+                    <option value="Africa International University">
+                    <option value="Africa Nazarene University">
+                    <option value="Amref International University">
+                    <option value="Chuka University">
+                    <option value="Cooperative University of Kenya">
+                    <option value="Daystar University">
+                    <option value="Dedan Kimathi University of Technology">
+                    <option value="Egerton University">
+                    <option value="Garissa University">
+                    <option value="Great Lakes University of Kisumu">
+                    <option value="Gretsa University">
+                    <option value="International Leadership University, Kenya">
+                    <option value="Islamic University of Kenya">
+                    <option value="Jaramogi Oginga Odinga University of Science and Technology">
+                    <option value="Jomo Kenyatta University of Agriculture and Technology">
+                    <option value="Kabarak University">
+                    <option value="KAG East University">
+                    <option value="Karatina University">
+                    <option value="KCA University">
+                    <option value="Kenya Highlands University">
+                    <option value="Kenya Methodist University">
+                    <option value="Kibabii University">
+                    <option value="Kenyatta University">
+                    <option value="Kirinyaga University">
+                    <option value="Kiriri Women's University of Science and Technology">
+                    <option value="Kisii University">
+                    <option value="Laikipia University">
+                    <option value="Lukenya University">
+                    <option value="Maasai Mara University">
+                    <option value="Machakos University">
+                    <option value="Management University of Africa">
+                    <option value="Maseno University">
+                    <option value="Masinde Muliro University of Science and Technology">
+                    <option value="Meru University of Science and Technology">
+                    <option value="Moi University">
+                    <option value="Mount Kenya University">
+                    <option value="Multimedia University of Kenya">
+                    <option value="Murang'a University of Technology">
+                    <option value="Pan Africa Christian University">
+                    <option value="Pioneer International University">
+                    <option value="Pwani University">
+                    <option value="Riara University">
+                    <option value="Rongo University">
+                    <option value="Scott Christian University">
+                    <option value="South Eastern Kenya University">
+                    <option value="St. Paul's University">
+                    <option value="Strathmore University">
+                    <option value="Taita Taveta University">
+                    <option value="Technical University of Kenya">
+                    <option value="Technical University of Mombasa">
+                    <option value="The Catholic University of Eastern Africa">
+                    <option value="The Co-operative University of Kenya">
+                    <option value="The East African University">
+                    <option value="The Presbyterian University of East Africa">
+                    <option value="Umma University">
+                    <option value="United States International University Africa">
+                    <option value="University of Eastern Africa, Baraton">
+                    <option value="University of Eldoret">
+                    <option value="University of Embu">
+                    <option value="University of Kabianga">
+                    <option value="Uzima University">
+                    <option value="Zetech University">
+                </datalist>
+            </div>
+            <div class="form-group">
+                <label for="graduation-year">Year of Graduation:</label>
+                <input type="date" id="graduation-year" name="graduation-year" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="additional-courses">Additional Courses/Short Courses Pursued:</label>
+                <input type="text" id="additional-courses" name="additional-courses" class="form-control" placeholder="(e.g., database analysis)">
+            </div>
+            <button type="submit" class="btn btn-success"><strong>Submit</strong></button>
+        </form>
+    </div>
+
+    <!-- Script to toggle dropdown content and show course input -->
+    <script>
+        document.getElementById("educationButton").addEventListener("click", function() {
+            var form = document.getElementById("educationForm");
+            form.style.display = form.style.display === "none" ? "block" : "none";
+        });
+
+        function showCourseInput() {
+            var educationLevel = document.getElementById("education-level").value;
+            var courseInputGroup = document.getElementById("course-input-group");
+            courseInputGroup.style.display = educationLevel ? "block" : "none";
+        }
+    </script>
+</body>
+</html>
