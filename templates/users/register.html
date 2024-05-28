@@ -11,8 +11,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{% static 'img/favicon.png" rel="icon">
-  <link href="{% static 'img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="{% static 'img/favicon.png' %}" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="users/https://fonts.gstatic.com" rel="preconnect">
@@ -28,15 +28,9 @@
   <link href="{% static 'vendor/simple-datatables/style.css' %}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="{% static 'css/style.css'%}" rel="stylesheet">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: NiceAdmin
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Updated: Apr 20 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  
   
 </head>
 
@@ -51,7 +45,7 @@
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
               <div class="d-flex justify-content-center py-4">
-                <a href="#" class="logo d-flex align-items-center w-auto">
+                <a href="{%url 'users-login' %}" class="logo d-flex align-items-center w-auto">
                   <img src="{% static 'img/icta logo.png' %}" alt="" class="logo d-flex align-items-center w-auto">
                   
                 </a>
@@ -100,7 +94,7 @@
                       <button class="btn btn-success w-100" type="submit">Create Account</button>
                     </div>
                     <div class="col-12">
-                      <p class="small mb-0">Already have an account? <a href="{%url 'users-login' %}">Log in</a></p>
+                      <p class="small mb-0">Already have an account? <a href="{% url 'users-login' %}">Log in</a></p>
                     </div>
                   </form>
 

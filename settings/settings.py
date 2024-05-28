@@ -106,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 
@@ -120,9 +120,12 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
    BASE_DIR / "static"
 ]
-LOGIN_REDIRECT_URL= 'index'
+# LOGIN_REDIRECT_URL= 'index'
+LOGIN_URL = 'users-login'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'users.CustomUser'

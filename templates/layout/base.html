@@ -1,4 +1,4 @@
-{%load static                                                                                   %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -250,7 +250,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="{% url 'users-logout' %}">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -328,7 +328,16 @@
     </ul>
 
   </aside><!-- End Sidebar-->
-
+  {% if  messages %}
+  <div class="message-dialog" id="msg">
+    {% for message in messages %}
+      <div class="notification alert alert-info {{ message.tags }}">
+        <span class="icon"></span>
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+  {% endif %}
   <main id="main" class="main">
 
     {% block content %}

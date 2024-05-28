@@ -1,4 +1,4 @@
-{%load static%}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,8 +11,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{% static 'img/favicon.pnstatic%' }" rel="icon">
-  <link href="{% static 'img/apple-touch-icon.png'%}" rel="apple-touch-icon">
+  <link href="{% static 'img/favicon.pnstatic' %}" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -29,12 +29,82 @@
 
   <!-- Template Main CSS File -->
   <link href="{%static 'css/style.css' %}" rel="stylesheet">
+  <style>
+    .message-dialog {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      padding: 20px;
+      max-width: auto;
+      text-align: center;
+    }
+    
+    .notification {
+      background-color: #f8f8f8;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .notification.success {
+      background-color: #dff0d8;
+      border-color: #d6e9c6;
+    }
+    
+    .notification.warning {
+      background-color: #fcf8e3;
+      border-color: #faebcc;
+    }
+    
+    .notification.error {
+      background-color: #f2dede;
+      border-color: #ebccd1;
+    }
+    
+    .notification:before {
+      font-family: "Arial", sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      margin-right: 8px;
+    }
+    
+    .notification.success:before {
+      content: '\2713';
+      color: #3c763d;
+    }
+    
+    .notification.warning:before {
+      content: '\26A0';
+      color: #8a6d3b;
+    }
+    
+    .notification.error:before {
+      content: '\2717';
+      color: #a94442;
+    }
+</style>
 
 </head>
 <body>
+  
 
   <main>
-    <div class="container">
+    {% if messages %}
+    <div class="message-dialog" id="msg">
+      {% for message in messages %}
+        <div class="notification {{ message.tags }}">
+          <span class="icon"></span>
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% comment %} <div class="container">
 
       <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
         <div class="container">
@@ -42,7 +112,7 @@
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
               <div class="d-flex justify-content-center py-4">
-                <a href="#" class="logo d-flex align-items-center w-auto">
+                <a href="{%url 'users-register' %}" class="logo d-flex align-items-center w-auto">
                   <img src="{%static 'img/icta logo.png'%}" alt="">
                   <span class="d-none d-lg-block">ICT Authority</span>
                 </a>
@@ -94,8 +164,77 @@
 
       </section>
 
-    </div>
+    </div> {% endcomment %}
+    <div class="container">
+
+      <section class="section d-flex flex-column align-items-center justify-content-center">
+        <div class="container" style="min-height: 730px;">
+            <div class="row">
+              <!-- Form Column -->
+
+              <div class="col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+                <div class="card mb-3">
+
+                  <div class="card-body">
+  
+                    <div class="pt-4 pb-2">
+                
+                      
+                      <p class="card-title text-center pb-0 fs-4">Enter your email & password to login</p>
+                    </div>
+                    <form class="row g-3 needs-validation" method="post" novalidate>
+                      {% csrf_token %}
+                      <div class="col-12">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="text" name="email" class="form-control" id="email" value="{{ email }}" required />
+                        <div class="invalid-feedback">Please enter a valid Email adddress!</div>
+                      </div>
+                      <div class="col-12">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" id="password" required/>
+                        <div class="invalid-feedback">Please enter your password!</div>
+                      </div>
+                      <div class="col-12">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
+                          <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <button class="btn btn-success w-100" type="submit" >Sign in</button>
+                        <p class="small mb-0">Don't have account? <a href="{% url 'users-register' %}" style="color: #01a64e">Create an account</a></p>
+                    </div>
+                  </form>
+                      </div>
+                    </form>
+                    <div class="col-12">
+                      <small class="text-muted">
+                        <a class="button secondaryAction" style="color: #dd2121" href="/accounts/password/reset/">Forgot Password?</a>
+                    </small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+       </div>
   </main><!-- End #main -->
+  
+  <body style="background-color: #F6F8FA;">
+    <div class"height: 40px; background-color: #dd2121;">
+      <div class="footer-copyright-area">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="footer-copy-right">
+                <p>Copyright © 2024
+                  . All rights reserved. <a href="https://icta.go.ke" target="_blank">ICT Authority</a>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Footer area-->
+  <!-- End Footer area-->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

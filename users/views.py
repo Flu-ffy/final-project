@@ -1,10 +1,14 @@
-from django.shortcuts import redirect, render
-from django.contrib.auth.models import User
+from django.shortcuts import redirect, render, get_object_or_404
+from django.contrib.auth import get_user_model
 from django.contrib import messages
-from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from users.forms import regForm
-from django.contrib.auth import authenticate,logout
+from django.contrib.auth import authenticate,logout,login
+from django.contrib.auth.decorators import login_required
+from django.http import Http404
+
+
+User = get_user_model()
 
 def iregister(request):
     if request.method == "POST":
@@ -45,20 +49,30 @@ def iregister(request):
 def ilogin(request):
     if request.method =='POST':
         email = request.POST['email']
-        pass1 = request.POST['pass1']
-        user = authenticate(request,email= email, pass1= pass1)
-        if user is not None:
-            form = login (request,user)
-            messages.success( request, 'Welcome {name}!!')
-            return redirect('users-index')
-    else:
-        messages.info(request, f'Account does not exist. Create account to continue')
-    return render(request, 'users/login.html')
+        password = request.POST['password']
+        try:
+            get_object_or_404(User, email=email)
+            user = authenticate(request, username=email, password=password)
+            if user is not None:
+                login(request,user)
+                messages.success( request, f'Welcome {email}!!')
+                return redirect('users-index')
+            else:
+                messages.error(request, 'Invalid login credentials')
+        except Http404:
+            messages.error(request, f'Account with emial {email} does not exist. Create account to continue')
+        return render(request, 'users/login.html', {'email':email})
+    else:      
+        return render(request, 'users/login.html')
 
+@login_required()
 def index(request):
-    return render(request, 'users/index.html')    
-def logout(request):
-   return render(request, 'users/logout.html')
+    return render(request, 'users/index.html') 
+   
+def ilogout(request):
+    logout(request)
+    return redirect('users-login')
+
 def PasswordReset(request):
     return render(request,'users/reset_password.html')
 def PasswordResetConfirm(request):
@@ -68,5 +82,7 @@ def PasswordResetDone(request):
 def PasswordResetComplete(request):
     return render(request,'users/reset_password.html')
 
+def password_change():
+    pass
     
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
