@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Recruitment portal</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'favicons/favicon.ico' %}" rel="icon">
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+    <!-- Template Main CSS File -->
+    <style>
+      body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: #f8f9fa;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+  
+      #header {
+        background-color:  #ffc107;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 1000;
+      }
+  
+      .logo-section {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+      }
+  
+      .logo img {
+        max-width: 200px;
+      }
+  
+      .navigation-section {
+        margin-left: auto;
+        padding: 10px;
+      }
+  
+      .header-nav {
+        display: flex;
+        align-items: center;
+      }
+  
+      .header-nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 20px;
+      }
+  
+      .header-nav a {
+        text-decoration: none;
+        color: #000;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+  
+      .header-nav a:hover {
+        background-color: #e9ecef;
+      }
+  
+      .header-nav i {
+        margin-right: 5px;
+      }
+  
+      #footer {
+        background-color: #343a40; /* Footer background color, adjust as needed */
+        color: #ffffff; /* Footer text color, adjust as needed */
+        padding: 5px;
+        text-align: center;
+        margin-top: auto;
+        width: 100%;
+        position: relative;
+        bottom: 0;
+        left: 0;
+      }
+  
+      .card-row {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        align-items: center;
+      }
+  
+      .card {
+        border: none;
+      }
+  
+      .card-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #ffc107;
+      }
+  
+      .card-body {
+        padding: 20px;
+      }
+      .accordion-section {
+        margin-bottom: 20px;
+        margin-top: 20px;
+      }
+  
+      .accordion-item {
+        margin-top: 20px;
+      }
+  
+      .accordion-button {
+        border: none !important;
+        background-color: transparent !important;
+        color: #000; /* Set the desired text color */
+      }
+  
+      .accordion-button:hover,
+      .accordion-button:focus {
+        background-color: transparent !important;
+        border-color: #ffc107 !important; 
+      }
+    </style>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <!-- Logo Section -->
+    <div class="logo-section">
+      <a href="{% url 'users-index' %}" class="logo d-flex align-items-center">
+        <img src="{% static 'img/icta.png' %}" alt="icta">
+      </a>
+    </div>
+
+    <!-- Navigation Links Section -->
+    <div class="navigation-section">
+      <nav class="header-nav ms-auto">
+        <ul>
+            <li>
+                <a href="{% url 'users-contact' %}">
+                  <i class="bi bi-envelope fs-2"></i>
+                  <span style="font-size: 20px;">Contact</span>
+                </a>
+              </li>
+        </ul>
+      </nav><!-- End Icons Navigation -->
+    </div>
+
+  </header><!-- End Header -->
+  
+  <section class="accordion-section">
+    <div class="container">
+  
+        <!-- Single Accordion -->
+        <div class="col-md-12">
+            <div class="accordion" id="root-accordion">
+
+                <!-- Accordion Item 1 -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card accordion-item">
+                            <div class="card-header" id="headingOne1">
+                                <h2 class="mb-0">
+                                    <button class="accordion-button" type="button" data-toggle="collapse" data-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1" data-parent="#root-accordion">
+                                        Accordion Item #1
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseOne1" class="collapse" aria-labelledby="headingOne1" data-parent="#root-accordion">
+                                <div class="card-body">
+                                  <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis nunc sed blandit libero. Sed augue lacus viverra vitae congue. Sodales neque sodales ut etiam sit amet nisl purus. Donec adipiscing tristique risus nec feugiat in fermentum. Quam quisque id diam vel quam elementum pulvinar etiam non. Orci ac auctor augue mauris augue. Praesent semper feugiat nibh sed. Consectetur adipiscing elit pellentesque habitant morbi. Eu lobortis elementum nibh tellus molestie nunc. Massa sapien faucibus et molestie ac feugiat sed. Non blandit massa enim nec dui nunc.
+
+                                  </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 2 -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card accordion-item">
+                            <div class="card-header" id="headingTwo2">
+                                <h2 class="mb-0">
+                                    <button class="accordion-button" type="button" data-toggle="collapse" data-target="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo2" data-parent="#root-accordion">
+                                        Accordion Item #2
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo2" data-parent="#root-accordion">
+                                <div class="card-body">
+                                  <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis nunc sed blandit libero. Sed augue lacus viverra vitae congue. Sodales neque sodales ut etiam sit amet nisl purus. Donec adipiscing tristique risus nec feugiat in fermentum. Quam quisque id diam vel quam elementum pulvinar etiam non. Orci ac auctor augue mauris augue. Praesent semper feugiat nibh sed. Consectetur adipiscing elit pellentesque habitant morbi. Eu lobortis elementum nibh tellus molestie nunc. Massa sapien faucibus et molestie ac feugiat sed. Non blandit massa enim nec dui nunc.
+                                  </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 3 -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card accordion-item">
+                            <div class="card-header" id="headingThree3">
+                                <h2 class="mb-0">
+                                    <button class="accordion-button" type="button" data-toggle="collapse" data-target="#collapseThree3" aria-expanded="false" aria-controls="collapseThree3" data-parent="#root-accordion">
+                                        Accordion Item #3
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseThree3" class="collapse" aria-labelledby="headingThree3" data-parent="#root-accordion">
+                                <div class="card-body">
+                                    <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 4 -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card accordion-item">
+                            <div class="card-header" id="headingFour4">
+                                <h2 class="mb-0">
+                                    <button class="accordion-button" type="button" data-toggle="collapse" data-target="#collapseFour4" aria-expanded="false" aria-controls="collapseFour4" data-parent="#root-accordion">
+                                        Accordion Item #4
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseFour4" class="collapse" aria-labelledby="headingFour4" data-parent="#root-accordion">
+                                <div class="card-body">
+                                    <strong>Title #4</strong> - Description in Latin.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 5 -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card accordion-item">
+                            <div class="card-header" id="headingFive5">
+                                <h2 class="mb-0">
+                                    <button class="accordion-button" type="button" data-toggle="collapse" data-target="#collapseFive5" aria-expanded="false" aria-controls="collapseFive5" data-parent="#root-accordion">
+                                        Accordion Item #5
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseFive5" class="collapse" aria-labelledby="headingFive5" data-parent="#root-accordion">
+                                <div class="card-body">
+                                    <strong>Title #5</strong> - Description in Latin.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 6 -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card accordion-item">
+                            <div class="card-header" id="headingSix6">
+                                <h2 class="mb-0">
+                                    <button class="accordion-button" type="button" data-toggle="collapse" data-target="#collapseSix6" aria-expanded="false" aria-controls="collapseSix6" data-parent="#root-accordion">
+                                        Accordion Item #6
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseSix6" class="collapse" aria-labelledby="headingSix6" data-parent="#root-accordion">
+                                <div class="card-body">
+                                    <strong>Title #6</strong> - Description in Latin.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+  
+  <footer id="footer">
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-12 text-center">
+          <p>&copy; <span id="currentYear"></span> iRecruite. All rights reserved.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </footer>
+  <script>
+    document.getElementById('currentYear').innerText = new Date().getFullYear();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

@@ -30,6 +30,18 @@
   <!-- Template Main CSS File -->
   <link href="{%static 'css/style.css' %}" rel="stylesheet">
   <style>
+    #footer {
+      background-color: #343a40; /* Footer background color, adjust as needed */
+      color: #ffffff; /* Footer text color, adjust as needed */
+      padding: 5px;
+      text-align: center;
+      margin-top: auto;
+      width: 100%;
+      position: relative;
+      bottom: 0;
+      left: 0;
+    }
+
     .message-dialog {
       position: absolute;
       top: 20%;
@@ -91,9 +103,36 @@
 
 </head>
 <body>
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <!-- Logo Section -->
+    <div class="logo-section">
+      <a href="{% url 'users-index' %}" class="logo d-flex align-items-center">
+        <img src="{% static 'img/ictalogo.png' %}" alt="">
+      </a>
+    </div>
+
+    <!-- Navigation Links Section -->
+    <div class="navigation-section">
+      <nav class="header-nav ms-auto">
+        <!-- header-top-second start -->
+                  <!-- ================ -->
+                  <div id="header-top-second" class="clearfix text-right">
+                    <ul class="list-inline">
+                      <!-- <li class="list-inline-item"><i class="fa fa-phone pr-1 pl-10"></i>P.O.BOX 37899-00100, Nairobi.</li> -->
+                      <li class="list-inline-item"><i class="fa fa-envelope-o pr-1 pl-10" style="margin-top: 10px;"></i>
+                        recruitment@icta.go.ke</li>
+                    </ul>
+                  </div>
+                  <!-- header-top-second end -->
+        
+      </nav><!-- End Icons Navigation -->
+    </div>
+
+  </header><!-- End Header -->
   
 
-  <main>
+  
     {% if messages %}
     <div class="message-dialog" id="msg">
       {% for message in messages %}
@@ -104,84 +143,15 @@
       {% endfor %}
     </div>
     {% endif %}
-    {% comment %} <div class="container">
-
-      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-
-              <div class="d-flex justify-content-center py-4">
-                <a href="{%url 'users-register' %}" class="logo d-flex align-items-center w-auto">
-                  <img src="{%static 'img/icta logo.png'%}" alt="">
-                  <span class="d-none d-lg-block">ICT Authority</span>
-                </a>
-              </div><!-- End Logo -->
-
-              <div class="card mb-3">
-
-                <div class="card-body">
-
-                  <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
-                    <p class="text-center small">Enter your username & password to login</p>
-                  </div>
-
-                  <form class="row g-3 needs-validation" method="POST">
-                    {% csrf_token %}
-                    <div class="col-12">
-                      <label for="yourEmail" class="form-label">Your Email</label>
-                      <input type="email" name="email" class="form-control" id="yourEmail" required>
-                      <div class="invalid-feedback">Please enter a valid Email adddress!</div>
-                    </div>
-
-                    <div class="col-12">
-                      <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="pass1" class="form-control" id="yourPassword" required>
-                      <div class="invalid-feedback">Please enter your password!</div>
-                    </div>
-
-                    <div class="col-12">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
-                        <label class="form-check-label" for="rememberMe">Remember me</label>
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <button class="btn btn-success w-100" type="submit">Login</button>
-                    </div>
-                    <div class="col-12">
-                      <p class="small mb-0">Don't have account? <a href="{%url 'users-register' %}">Create an account</a></p>
-                    </div>
-                  </form>
-
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-      </section>
-
-    </div> {% endcomment %}
+   
     <div class="container">
-
-      <section class="section d-flex flex-column align-items-center justify-content-center">
-        <div class="container" style="min-height: 730px;">
-            <div class="row">
-              <!-- Form Column -->
-
-              <div class="col-md-6 d-flex flex-column align-items-center justify-content-center">
-
                 <div class="card mb-3">
-
+  
                   <div class="card-body">
   
                     <div class="pt-4 pb-2">
-                
-                      
-                      <p class="card-title text-center pb-0 fs-4">Enter your email & password to login</p>
+                      <h5 class="card-title text-center pb-0 fs-4"><p style="font-size: 20px"> <a href=""  style="color: #01a64e">Enter your email & password to login</a></p></h5>
+
                     </div>
                     <form class="row g-3 needs-validation" method="post" novalidate>
                       {% csrf_token %}
@@ -190,17 +160,20 @@
                         <input type="text" name="email" class="form-control" id="email" value="{{ email }}" required />
                         <div class="invalid-feedback">Please enter a valid Email adddress!</div>
                       </div>
+
                       <div class="col-12">
                         <label for="password" class="form-label">Password</label>
                         <input type="password" name="password" class="form-control" id="password" required/>
                         <div class="invalid-feedback">Please enter your password!</div>
                       </div>
+
                       <div class="col-12">
                         <div class="form-check">
                           <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
                           <label class="form-check-label" for="rememberMe">Remember me</label>
                         </div>
                       </div>
+
                       <div class="col-12">
                         <button class="btn btn-success w-100" type="submit" >Sign in</button>
                         <p class="small mb-0">Don't have account? <a href="{% url 'users-register' %}" style="color: #01a64e">Create an account</a></p>
@@ -210,15 +183,16 @@
                     </form>
                     <div class="col-12">
                       <small class="text-muted">
-                        <a class="button secondaryAction" style="color: #dd2121" href="/accounts/password/reset/">Forgot Password?</a>
+                        <a href="{% url 'forgot_password' %}" style="color: #dd2121" >Forgot password?</a>
+                    
+                      
                     </small>
                     </div>
                   </div>
                 </div>
               </div>
        </div>
-  </main><!-- End #main -->
-  
+       
   <body style="background-color: #F6F8FA;">
     <div class"height: 40px; background-color: #dd2121;">
       <div class="footer-copyright-area">
@@ -227,7 +201,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div class="footer-copy-right">
                 <p>Copyright © 2024
-                  . All rights reserved. <a href="https://icta.go.ke" target="_blank">ICT Authority</a>.</p>
+                  . All rights reserved. <a href="https://icta.go.ke" target="_blank" style="color: #dd2121">ICT Authority</a>.</p>
               </div>
             </div>
           </div>
@@ -250,6 +224,22 @@
 
   <!-- Template Main JS File -->
   <script src="{% static 'js/main.js'%}"></script>
+
+  <script>
+    // Function to hide the message dialog after 5 seconds
+  function hideMessageDialog() {
+    var messageDialog = document.getElementById('msg');
+    if (messageDialog) {
+      messageDialog.style.display = 'none';
+    }
+}
+
+// Set timeout to call the hideMessageDialog function after 5 seconds
+  setTimeout(hideMessageDialog, 5000);
+  </script>
+  <script>
+    document.getElementById('currentYear').innerText = new Date().getFullYear();
+  </script>
 
 </body>
 

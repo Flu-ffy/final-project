@@ -34,6 +34,7 @@ class CustomUser(AbstractUser):
     username = None
     id = models.UUIDField(default=uuid.uuid4, primary_key=True)
     email = models.EmailField(unique=True)
+    name=models.CharField(max_length=50, blank=True, null=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     objects = CustomUserManager()

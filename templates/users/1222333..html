@@ -1,0 +1,275 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Recruitment Portal</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'favicons/favicon.ico' %}" rel="icon">
+
+  <!-- Google Fonts -->
+  <!-- <link href="https://fonts.googleapis.com" rel="preconnect"> -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+
+<style>
+    #header {
+        background-color:  #ffc107;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 1000;
+      }
+  
+      .logo-section {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+      }
+  
+      .logo img {
+        max-width: 200px;
+      }
+  
+      .navigation-section {
+        margin-left: auto;
+        padding: 10px;
+      }
+  
+      .header-nav {
+        display: flex;
+        align-items: center;
+      }
+  
+      .header-nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 20px;
+      }
+  
+      .header-nav a {
+        text-decoration: none;
+        color: #000;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+  
+      .header-nav a:hover {
+        background-color: #e9ecef;
+      }
+  
+      .header-nav i {
+        margin-right: 5px;
+      }
+  
+      #footer {
+        background-color: #343a40; /* Footer background color, adjust as needed */
+        color: #ffffff; /* Footer text color, adjust as needed */
+        padding: 5px;
+        text-align: center;
+        margin-top: auto;
+        width: 100%;
+        position: relative;
+        bottom: 0;
+        left: 0;
+      }
+      .card {
+        {% comment %} box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow to the card */ {% endcomment %}
+        border: none;
+        {% comment %} border-radius: 10px; /* Add rounded corners to the card */ {% endcomment %}
+        
+      }
+      .message-dialog {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        padding: 20px;
+        max-width: auto;
+        text-align: center;
+      }
+      
+      .notification {
+        background-color: #f8f8f8;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+      }
+      
+      .notification.success {
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+      }
+      
+      .notification.warning {
+        background-color: #fcf8e3;
+        border-color: #faebcc;
+      }
+      
+      .notification.error {
+        background-color: #f2dede;
+        border-color: #ebccd1;
+      }
+      
+      .notification:before {
+        font-family: "Arial", sans-serif;
+        font-weight: bold;
+        font-size: 18px;
+        margin-right: 8px;
+      }
+      
+      .notification.success:before {
+        content: '\2713';
+        color: #3c763d;
+      }
+      
+      .notification.warning:before {
+        content: '\26A0';
+        color: #8a6d3b;
+      }
+      
+      .notification.error:before {
+        content: '\2717';
+        color: #a94442;
+      }
+</style>
+</head>
+
+<body>
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <!-- Logo Section -->
+        <div class="logo-section">
+          <a href="{% url 'users-index' %}" class="logo d-flex align-items-center">
+            <img src="{% static 'img/icta.png' %}" alt="icta">
+          </a>
+        </div>
+    
+        <!-- Navigation Links Section -->
+        <div class="navigation-section">
+          <nav class="header-nav ms-auto">
+            <ul>
+            <li>
+                <a href="{% url 'users-login' %}">
+                    <i class="bi bi-box-arrow-in-right fs-2"></i>
+                    <span style="font-size: 20px;">Login</span>
+                </a>
+            </li>
+              <li>
+                <a href="{% url 'users-register' %}">
+                  <i class="bi bi-person-plus fs-2"></i>
+                  <span style="font-size: 20px;">Register</span>
+                </a>
+              </li>
+            </ul>
+          </nav><!-- End Icons Navigation -->
+        </div>
+    
+      </header><!-- End Header -->
+  {% if messages %}
+  <div class="message-dialog" id="msg">
+    {% for message in messages %}
+      <div class="notification {{ message.tags }}">
+        <span class="icon"></span>
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+    <div class="container">
+
+      <section class="section d-flex flex-column align-items-center justify-content-center">
+        <div class="container">
+            <div class="row">
+              <!-- Form Column -->
+              <div class="col-md-6 d-flex flex-column align-items-center justify-content-center">
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="pt-4 pb-2">
+                      <h5 class="card-title text-center pb-0 fs-4" style="color: #01a64e">Forgot Password</h5>
+                    </div>
+                    <form class="row g-3 needs-validation" method="post" novalidate>
+                      {% csrf_token %}
+                      <div class="col-12">
+                        <label for="email" class="form-label">Email</label>
+                        <div class="input-group has-validation">
+                          <span class="input-group-text" id="inputGroupPrepend">@</span>
+                          <input type="email" name="email" class="form-control" id="email" value="{{ email }}" required/>
+                          <div class="invalid-feedback">please enter a valid email!</div>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                            <button class="btn btn-warning w-100" type="submit">Submit</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Image Column -->
+              <div class="col-md-6">
+                <!-- Adjust the image path accordingly -->
+                <img src="{% static 'img/icta.png' %}" alt="icta" class="img-fluid">
+              </div>
+            </div>
+          </div>
+          
+      </section>
+      
+
+    </div>
+    <footer id="footer">
+
+        <div class="container">
+          <div class="row">
+    
+            <div class="col-lg-12 text-center">
+              <div class="footer-copy-right">
+              <p>Copyright © 2024
+                . All rights reserved. <a href="https://icta.go.ke" target="_blank" style="color: #dd2121">ICT Authority</a>.</p>
+            </div>
+    
+          </div>
+        </div>
+    
+      </footer>
+  <!-- Vendor JS Files -->
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script> 
+  <!-- Template Main JS File -->
+  <script>
+    // Function to hide the message dialog after 5 seconds
+  function hideMessageDialog() {
+    var messageDialog = document.getElementById('msg');
+    if (messageDialog) {
+      messageDialog.style.display = 'none';
+    }
+}
+
+// Set timeout to call the hideMessageDialog function after 5 seconds
+  setTimeout(hideMessageDialog, 5000);
+  </script>
+  <script>
+    document.getElementById('currentYear').innerText = new Date().getFullYear();
+  </script>
+
+</body>
+
+</html>
