@@ -1,68 +1,23 @@
 {% load static %}
 <!DOCTYPE html>
-<html class="no-js" lang="">
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>Recruitment portal</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{% static 'img/favicon.png' %}" rel="icon">
-  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
-  <link rel="shortcut icon" type="image/x-icon" href="">
+  <link href="{% static 'img/favicon.png" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="users/https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-  <!-- Bootstrap CSS
-		============================================ -->
-  <link rel="stylesheet" href="/static/frontend/css/bootstrap.min.css">
-  <!-- font awesome CSS
-      ============================================ -->
-  <link rel="stylesheet" href="/static/frontend/css/font-awesome.min.css">
-  <!-- owl.carousel CSS
-      ============================================ -->
-  <link rel="stylesheet" href="/static/frontend/css/owl.carousel.css">
-  <link rel="stylesheet" href="/static/frontend/css/owl.theme.css">
-  <link rel="stylesheet" href="/static/frontend/css/owl.transitions.css">
-  <!-- meanmenu CSS
-      ============================================ -->
-  <link rel="stylesheet" href="/static/frontend/css/meanmenu/meanmenu.min.css">
-  <!-- animate CSS
-      ============================================ -->
-      <link rel="stylesheet" href="/static/frontend/css/animate.css">
-  <!-- normalize CSS
-		============================================ -->
-  <link rel="stylesheet" href="/static/frontend/css/normalize.css">
-  <!-- mCustomScrollbar CSS
-		============================================ -->
-  <link rel="stylesheet" href="/static/frontend/css/scrollbar/jquery.mCustomScrollbar.min.css">
-  <!-- Notika icon CSS
-		============================================ -->
-  <link rel="stylesheet" href="/static/frontend/css/notika-custom-icon.css">
-  <!-- wave CSS
-		============================================ -->
-  <link rel="stylesheet" href="/static/frontend/css/wave/waves.min.css">
-  <link rel="stylesheet" href="/static/frontend/css/wave/button.css">
-  <!-- main CSS
-		============================================ -->
-  <link rel="stylesheet" href="/static/frontend/css/main.css">
-  <!-- style CSS
-		============================================ -->
-  <link rel="stylesheet" href="/static/frontend/style.css">
-  <!-- responsive CSS
-		============================================ -->
-  <link rel="stylesheet" href="/static/frontend/css/responsive.css">
-  <!-- modernizr JS
-		============================================ -->
-  <script src="/static/frontend/js/vendor/modernizr-2.8.3.min.js"></script>
-
-  
   <!-- Vendor CSS Files -->
   <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
   <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
@@ -73,151 +28,147 @@
   <link href="{% static 'vendor/simple-datatables/style.css' %}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style.css'%}" rel="stylesheet">
 
-   <!-- this makes message to auto dissappear after few seconds -->
-   <script type="text/javascript">
+  <style>
+    .message-dialog {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      padding: 20px;
+      max-width: auto;
+      text-align: center;
+    }
+    
+    .notification {
+      background-color: #f8f8f8;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .notification.success {
+      background-color: #dff0d8;
+      border-color: #d6e9c6;
+    }
+    
+    .notification.warning {
+      background-color: #fcf8e3;
+      border-color: #faebcc;
+    }
+    
+    .notification.error {
+      background-color: #f2dede;
+      border-color: #ebccd1;
+    }
+    
+    .notification:before {
+      font-family: "Arial", sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      margin-right: 8px;
+    }
+    
+    .notification.success:before {
+      content: '\2713';
+      color: #3c763d;
+    }
+    
+    .notification.warning:before {
+      content: '\26A0';
+      color: #8a6d3b;
+    }
+    
+    .notification.error:before {
+      content: '\2717';
+      color: #a94442;
+    }
 
-    window.setTimeout(function () {
-      $(".alert").fadeTo(1000, 0).slideUp(1000, function () {
-        $(this).remove();
-      });
-    }, 4000);
+    .card-body{
+      background-color: #fff !important;
+      padding: 20px;
+      margin-top: 30px;
+    }
+</style>
 
-
-   </script>
-    <style>
-      .message-dialog {
-        position: absolute;
-        top: 20%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 9999;
-        padding: 20px;
-        max-width: auto;
-        text-align: center;
-      }
-      
-      .notification {
-        background-color: #f8f8f8;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        padding: 10px;
-        margin-bottom: 10px;
-        display: flex;
-        align-items: center;
-      }
-      
-      .notification.success {
-        background-color: #dff0d8;
-        border-color: #d6e9c6;
-      }
-      
-      .notification.warning {
-        background-color: #fcf8e3;
-        border-color: #faebcc;
-      }
-      
-      .notification.error {
-        background-color: #f2dede;
-        border-color: #ebccd1;
-      }
-      
-      .notification:before {
-        font-family: "Arial", sans-serif;
-        font-weight: bold;
-        font-size: 18px;
-        margin-right: 8px;
-      }
-      
-      .notification.success:before {
-        content: '\2713';
-        color: #3c763d;
-      }
-      
-      .notification.warning:before {
-        content: '\26A0';
-        color: #8a6d3b;
-      }
-      
-      .notification.error:before {
-        content: '\2717';
-        color: #a94442;
-      }
-  </style>
   
-  
-  
-</head>
-
-<body>
-
-  <main>
-    <div class="container">
+    <div class="container"><body style="background-color: #F6F8FA;">
+    <div class="header-top dark mt-2 p-3" style="height: 40px; background-color: #01a64e;">
       <div class="container">
-        <body style="background-color: #F6F8FA;">
-          <div class="header-top dark mt-0 p-0" style="height: 5px; background-color: #01a64e;">
-            <div class="container">
-              <div class="row">
-                <div class="col-2 col-md-5">
-                  <!-- header-top-first start -->
-                  <!-- ================ -->
-                  <div class="header-top-first clearfix">
-                  
-                    
-                  </div>
-                  <!-- header-top-first end -->
-                </div>
-                <div class="col-10 col-md-0">
-        
-                  <!-- header-top-second start -->
-                  <!-- ================ -->
-                  <div id="header-top-second" class="clearfix text-right">
-                    <ul class="list-inline">
-                      <!-- <li class="list-inline-item"><i class="fa fa-phone pr-1 pl-10"></i>P.O.BOX 37899-00100, Nairobi.</li> -->
-                      <li class="list-inline-item"><i class="fa fa-envelope-o pr-1 pl-10" style="margin-top: 10px;"></i>
-                        recruitment@icta.go.ke</li>
-                    </ul>
-                  </div>
-                  <!-- header-top-second end -->
-        
-                </div>
-              </div>
+        <div class="row">
+          <div class="col-2 col-md-5">
+            <!-- header-top-first start -->
+            <!-- ================ -->
+            <div class="header-top-first clearfix">
+            
+              
+            </div>
+            <!-- header-top-first end -->
+          </div>
+          <div class="col-10 col-md-7">
+  
+            <!-- header-top-second start -->
+            <!-- ================ -->
+            <div id="header-top-second" class="clearfix text-right">
+              
+              <ul class="list-inline">
+                <!-- <li class="list-inline-item"><i class="fa fa-phone pr-1 pl-10"></i>P.O.BOX 37899-00100, Nairobi.</li> -->
+                <li class="list-inline-item"><i class="fa fa-envelope-o pr-1 pl-10" style="margin-top: 10px;"></i>
+                  recruitment@icta.go.ke</li>
+              </ul>
+            </div>
+            <!-- header-top-second end -->
+  
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="header-top-area">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="logo-area">
+              <a href="/"><img src="{% static 'ictalogo.png' %}" style="width: 50%" />
+                <font color="black"> RECRUITMENT PORTAL</font>
+              </a>
             </div>
           </div>
-        
-        
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- End Header Top Area -->
+<!-- Mobile Menu start -->
+</head>
+    {% if messages %}
+    <div class="message-dialog" id="msg">
+      {% for message in messages %}
+        <div class="notification {{ message.tags }}">
+          <span class="icon"></span>
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+   
   
-                <div class="card mb-3">
   
-                  <div class="card-body">
+    <div class="card mb-3">
   
-                    <div class="pt-4 pb-2">
-                    
+      <div class="card-body">
 
-                    </div>
+        <div class="pt-4 pb-2">
+          <h5 class="card-title text-center pb-0 fs-4"><p style="font-size: 20px"> <a href=""  style="color: #01a64e">Create an Account</a></p></h5>
 
-      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-
-              <div class="d-flex justify-content-center py-4">
-                <a href="{%url 'users-login' %}" class="logo d-flex align-items-center w-auto">
-                  <img src="{% static 'img/ictalogo.png' %}" alt="" class="logo d-flex align-items-center w-auto">
-                  
-                </a>
-              </div><!-- End Logo -->
-
-              <div class="card mb-3">
-
-                <div class="card-body">
-
-                  <div class="pt-4 pb-2">
-                    
-                    <h5 class="card-title text-center pb-0 fs-4"><style="color: #01a64e">Create an Account</h5>
-                    <p class="text-center small">Enter your personal details to create account</p>
-                  <form class="row g-3 needs-validation" method="POST">
+        </div>
+        <form class="row g-3 needs-validation" method="post" novalidate>
                     {% csrf_token %}
                     <div class="col-12">
                       <label for="yourName" class="form-label">Your Name</label>
@@ -261,11 +212,15 @@
             </div>
           </div>
         </div>
-
-      </section>
-
-    </div>
-  </main><!-- End #main -->
+        <body style="background-color: #F6F8FA;">
+          <div class="header-top dark mt-2 p-3" style="height: 40px; background-color: #dd2121;">
+                <div class="footer-copyright-area">
+                         <div class="footer-copy-right">
+                           <p>Copyright © 2024
+                              . All rights reserved. <a href="https://icta.go.ke" target="_blank"><a href=""  style="color: #01a64e">ICT Authority</a>.</p>
+                          </div>
+                </div>
+          </div>
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

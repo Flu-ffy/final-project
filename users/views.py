@@ -14,6 +14,7 @@ from django.core.mail import send_mail
 User = get_user_model()
 
 def iregister(request):
+    activation_link_sent = request.session.pop('activation_link_sent', False)
     if request.method == "POST":
         form= regForm(request.POST)
         name = request.POST['name']
@@ -52,6 +53,62 @@ def iregister(request):
         #     return redirect('users-login')  # Assuming you have a 'login' URL pattern
     else:
         return render(request, 'users/register.html')
+    
+def activate_user(request, token): 
+    email = ""
+    user.name = ""
+    try:
+        request.session.pop('token', None)
+        user = get_object_or_404(User, id=token)
+        user.is_active = True
+        email = user.email 
+        user.save()
+        messages.success(request, 'Your account is now active. Enter your credentials to log in.')
+        return redirect('users-login')
+    except Exception:
+        context = {
+            'email': email 
+        }
+        messages.error(request, 'Could not complete your request. Please try again later.')
+        return render(request, 'users/register.html', context)
+    
+def resend_activation_link(request,id):
+    user_email = ""
+    try:
+        token = request.session.pop('token', None)
+        if token is not None:
+            user = get_object_or_404(User, id)
+            if user.activation_count < 4:
+                user_email = user.email
+                user_name = user.name
+                user_id = id
+                activation_link = f'{settings.HOST_ADDRESS}/iauth/activate/{user_id}'
+                subject = 'Activate Account'
+                message = f'Hi {user_name}, your account has been successfully created, \
+                    click this link to activate your account\n\n{activation_link}'
+                email_from = settings.EMAIL_HOST_USER
+                recipient_list = [user_email]
+                send_mail(subject, message, email_from, recipient_list, fail_silently=False)
+                user.activation_count = F('activation_count') + 1
+                user.save()
+                messages.success(request, 'Account successfully created. Check your email for further instructions')
+                request.session['activation_link_sent'] = True
+            else:
+                messages.error(request, 'Maximum resends reached. Please contact the Admin')
+        else:
+            messages.error(request, 'Account with those details not found')
+    except SMTPException:
+        messages.error(request, 'Something went wrong. Please try again later.')
+    except Exception:
+        messages.error(request, 'Could not complete your request. Please try again later.')
+    
+    context = {
+        'email': user_email,
+        'name': user_name
+    }
+
+    return render(request, 'users/register.html', context)    
+    
 
 def ilogin(request):
     if request.method =='POST':
@@ -105,13 +162,13 @@ def forgot_password(request):
     
     return render(request, 'users/forgot_password.html')
 
-def reset_password(request, pk):
+def reset_password(request, id):
     if request.method == 'POST':
         new_password = request.POST.get('password')
         confirm_password = request.POST.get('confirm_password')
         if new_password == confirm_password:
             try:
-                user = get_object_or_404(User, id=pk)
+                user = get_object_or_404(User, id)
                 user.set_password(new_password)
                 user.save()
                 messages.success(request, 'Password was reset successfully')
@@ -124,3 +181,23 @@ def reset_password(request, pk):
     return render(request, 'users/reset_password.html')
        
 
+def reset_password_done(request, id):
+    if request.method == 'POST':
+        new_password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+        if new_password == confirm_password:
+            try:
+                user = get_object_or_404(User, id)
+                user.set_password(new_password)
+                user.save()
+                messages.success(request, 'Password was reset successfully')
+            except Exception:
+                messages.error(request, 'Could not complete your request. Please try again later.')
+            return redirect('users-login')
+        else:
+            return render(request, 'users/reset_password.html')
+                
+    return render(request, 'users/reset_password_done.html')
+
+def reset_password_confirm(request):
+    return render(request, 'users/reset_password_confirm.html')
