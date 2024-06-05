@@ -12,32 +12,40 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
+import json
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+#Read env variables from the config file
+try:
+    with open(BASE_DIR / 'config.json') as conf_file:
+        config = json.load(conf_file)
+except FileNotFoundError as e:
+    raise FileNotFoundError(f"The configuration file 'config.json' was not found. {e}")
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$i01451=1#p36m4)*@fsyh-tg+qt6&n2hh$q)+g%aotb$*ip=6'
+SECRET_KEY = config.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config.get('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config.get('ALLOWED_HOSTS')
+
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'users',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -106,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 
@@ -120,8 +128,20 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
    BASE_DIR / "static"
 ]
+# LOGIN_REDIRECT_URL= 'index'
+LOGIN_URL = 'users-login'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'users.CustomUser'
+
+HOST_ADDRESS = "127.0.0.1:8000"
+EMAIL_BACKEND = config.get('EMAIL_BACKEND')
+EMAIL_HOST = config.get('EMAIL_HOST')
+EMAIL_USE_TLS = config.get('EMAIL_USE_TLS')
+EMAIL_PORT = config.get('EMAIL_PORT')
+EMAIL_HOST_USER = config.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config.get('EMAIL_HOST_PASSWORD')

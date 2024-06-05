@@ -1,4 +1,4 @@
-{%load static%}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,13 +6,13 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Pages / Login - NiceAdmin Bootstrap Template</title>
+  <title>Recruitment portal</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{% static 'img/favicon.pnstatic%' }" rel="icon">
-  <link href="{% static 'img/apple-touch-icon.png'%}" rel="apple-touch-icon">
+  <link href="{% static 'img/favicon.pnstatic' %}" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -30,72 +30,190 @@
   <!-- Template Main CSS File -->
   <link href="{%static 'css/style.css' %}" rel="stylesheet">
 
-</head>
-<body>
+  <style>
+    .message-dialog {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      padding: 20px;
+      max-width: auto;
+      text-align: center;
+    }
+    
+    .notification {
+      background-color: #f8f8f8;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .notification.success {
+      background-color: #dff0d8;
+      border-color: #d6e9c6;
+    }
+    
+    .notification.warning {
+      background-color: #fcf8e3;
+      border-color: #faebcc;
+    }
+    
+    .notification.error {
+      background-color: #f2dede;
+      border-color: #ebccd1;
+    }
+    
+    .notification:before {
+      font-family: "Arial", sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      margin-right: 8px;
+    }
+    
+    .notification.success:before {
+      content: '\2713';
+      color: #3c763d;
+    }
+    
+    .notification.warning:before {
+      content: '\26A0';
+      color: #8a6d3b;
+    }
+    
+    .notification.error:before {
+      content: '\2717';
+      color: #a94442;
+    }
 
-  <main>
-    <div class="container">
+    .card-body{
+      background-color: #fff !important;
+      padding: 20px;
+      margin-top: 30px;
+    }
+</style>
 
-      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-
-              <div class="d-flex justify-content-center py-4">
-                <a href="#" class="logo d-flex align-items-center w-auto">
-                  <img src="{%static 'img/icta logo.png'%}" alt="">
-                  <span class="d-none d-lg-block">ICT Authority</span>
-                </a>
-              </div><!-- End Logo -->
-
-              <div class="card mb-3">
-
-                <div class="card-body">
-
-                  <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
-                    <p class="text-center small">Enter your username & password to login</p>
-                  </div>
-
-                  <form class="row g-3 needs-validation" method="POST">
-                    {% csrf_token %}
-                    <div class="col-12">
-                      <label for="yourEmail" class="form-label">Your Email</label>
-                      <input type="email" name="email" class="form-control" id="yourEmail" required>
-                      <div class="invalid-feedback">Please enter a valid Email adddress!</div>
-                    </div>
-
-                    <div class="col-12">
-                      <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="pass1" class="form-control" id="yourPa" required>
-                      <div class="invalid-feedback">Please enter your password!</div>
-                    </div>
-
-                    <div class="col-12">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
-                        <label class="form-check-label" for="rememberMe">Remember me</label>
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <button class="btn btn-success w-100" type="submit">Login</button>
-                    </div>
-                    <div class="col-12">
-                      <p class="small mb-0">Don't have account? <a href="{%url 'users-register' %}">Create an account</a></p>
-                    </div>
-                  </form>
-
-                </div>
-              </div>
-
+  
+    <div class="container"><body style="background-color: #F6F8FA;">
+    <div class="header-top dark mt-4 p-4" style="height: 40px; background-color: #01a64e;">
+      <div class="container">
+        <div class="row">
+          <div class="col-2 col-md-5">
+            <!-- header-top-first start -->
+            <!-- ================ -->
+            <div class="header-top-first clearfix">
+            
+              
+            </div>
+            <!-- header-top-first end -->
+          </div>
+          <div class="col-10 col-md-7">
+  
+            <!-- header-top-second start -->
+            <!-- ================ -->
+            <div id="header-top-second " class="clearfix text-right">
+              <ul class="list-inline">
+                <!-- <li class="list-inline-item"><i class="fa fa-phone pr-1 pl-10"></i>P.O.BOX 37899-00100, Nairobi.</li> -->
+                <li class="list-inline-item"><i class="fa fa-envelope-o pr-1 pl-10" style="margin-top: 10px;"></i>
+                  recruitment@icta.go.ke</li>
+              </ul>
+            </div>
+            <!-- header-top-second end -->
+  
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="header-top-area">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="logo-area">
+              <a href="/"><img src="/static/img/ictalogo.png" style="width: 50%" />
+                <font color="black"> RECRUITMENT PORTAL</font>
+              </a>
             </div>
           </div>
         </div>
-
-      </section>
-
+      </div>
     </div>
-  </main><!-- End #main -->
+  </div>
+<!-- End Header Top Area -->
+<!-- Mobile Menu start -->
+</head>
+    {% if messages %}
+    <div class="message-dialog" id="msg">
+      {% for message in messages %}
+        <div class="notification {{ message.tags }}">
+          <span class="icon"></span>
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+   
+                <div class="card mb-3">
+  
+                  <div class="card-body">
+  
+                    <div class="pt-4 pb-2">
+                      <h5 class="card-title text-center pb-0 fs-4"><p style="font-size: 20px"> <a href=""  style="color: #01a64e">Enter your email & password to login</a></p></h5>
+
+                    </div>
+                    <form class="row g-3 needs-validation" method="post" novalidate>
+                      {% csrf_token %}
+                      <div class="col-12">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="text" name="email" class="form-control" id="email" value="{{ email }}" required />
+                        <div class="invalid-feedback">Please enter a valid Email adddress!</div>
+                      </div>
+
+                      <div class="col-12">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" id="password" required/>
+                        <div class="invalid-feedback">Please enter your password!</div>
+                      </div>
+
+                      <div class="col-12">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
+                          <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>
+                      </div>
+
+                      <div class="col-12">
+                        <button class="btn btn-success w-100" type="submit" >Sign in</button>
+                        <p class="small mb-0">Don't have account? <a href="{% url 'users-register' %}" style="color: #01a64e">Create an account</a></p>
+                    </div>
+                  </form>
+                      </div>
+                    </form>
+                    <div class="col-12">
+                      <small class="text-muted">
+                        <a href="{% url 'forgot_password' %}" style="color: #dd2121" >Forgot password?</a>
+                    
+                      
+                    </small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+       </div>
+       
+       <body style="background-color: #F6F8FA;">
+        <div class="header-top dark mt-2 p-3" style="height: 40px; background-color: #dd2121;">
+              <div class="footer-copyright-area">
+                       <div class="footer-copy-right">
+                         <p>Copyright © 2024
+                            . All rights reserved. <a href="https://icta.go.ke" target="_blank"><a href=""  style="color: #01a64e">ICT Authority</a>.</p>
+                        </div>
+              </div>
+        </div>
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -111,6 +229,22 @@
 
   <!-- Template Main JS File -->
   <script src="{% static 'js/main.js'%}"></script>
+
+  <script>
+    // Function to hide the message dialog after 5 seconds
+  function hideMessageDialog() {
+    var messageDialog = document.getElementById('msg');
+    if (messageDialog) {
+      messageDialog.style.display = 'none';
+    }
+}
+
+// Set timeout to call the hideMessageDialog function after 5 seconds
+  setTimeout(hideMessageDialog, 5000);
+  </script>
+  <script>
+    document.getElementById('currentYear').innerText = new Date().getFullYear();
+  </script>
 
 </body>
 
