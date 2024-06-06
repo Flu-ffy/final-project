@@ -1,0 +1,484 @@
+
+{% extends 'layout/base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta-charset-utf-8 >
+        <title>ICT AUTHORITY | RECRUITMENT PORTAL</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% block content %}
+        <style>
+            /*css styling*/
+             body {
+                font-family: "Open Sans", sans-serif;
+                background: #f2f4f8;
+                color: #444444;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-left: 150px; 
+                width:100%;
+
+            
+                
+            }
+            .row {
+                width: 100%;
+            }
+          
+            .form-element-list {
+                background-color: #fff;
+                padding: 40px;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                justify-content: center;
+                align-items: center;
+            }
+            /*tittle*/
+            h3, h4 {
+                color: #1b2c19;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .form-group {
+                margin-bottom: 15px;
+                width:100%;
+                
+                
+            }
+
+            label {
+                font-weight: bold;
+                margin-bottom: 5px;
+                display: block;
+                max-width: 100%;
+            }
+            /* start for input space styling*/
+            input[type="text"],
+            input[type="date"],
+            input[type="tel"],
+            input[type="email"],
+            input[list="counties"],
+            
+            textarea {
+                width: 100%;
+                padding: 20px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-size: 14px;
+            }
+            input[type="text"]:focus,
+            input[type="date"]:focus,
+            input[type="tel"]:focus,
+            input[type="email"]:focus,
+            input[type="number"]:focus,
+            select:focus,
+            textarea:focus {
+                border-color: #007bff;
+                outline: none;
+            }
+            input[type="number"] {
+                width: 100%;
+                padding: 20px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-size: 14px;
+            }
+            /*end for input styling*/
+            /*start radio buttons*/
+            .radio {
+                display: flex;
+                align-items: center;
+                margin-top: 5px;
+            }
+            .radio label {
+                margin-right: 20px;
+                font-weight: normal;
+            }
+            /*end*/
+            span {
+                color: #ab0909;
+            }
+            /*button styling*/
+            .button-group {
+                display: flex;
+                
+                margin-top: 20px;
+            }
+            button[type="submit"] {
+                margin-right: 10px; /* Space between buttons */
+                width: 18%;
+                padding: 15px 5px;
+                border: none;
+                border-radius: 4px;
+                font-size: 16px;
+                cursor: pointer;
+                
+                transition: background-color 0.3s ease;
+
+            }
+            button[name="saved"] {
+                background-color: #44d996;
+                color: #fff;
+                
+            }
+            button[name="proceed"] {
+                background-color: #111513;
+                color: #fff;
+                
+            }
+            button[type="submit"]:hover {
+                background-color: #c8efce;
+            }
+            /* end of button styling */
+            @media only screen and (max-width: 900px) {
+            .form-row {
+              flex-direction: column; 
+            }
+            .col-md-4 {
+                width: 0%;
+
+            }
+            }
+            .col-md-4 {
+                width: 80%;
+                padding: 20px;
+        }
+        .form-row{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 17px;
+            
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .item {
+            flex: 0 0 calc(33.33% - 10px); /* Adjust width as needed */
+            margin: 5px;
+        }
+        .hidden {
+        display: none;
+        }
+        select{
+        width: 100%;
+        padding: 18px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+        }
+        
+             
+        </style>
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+            <div class="col-md-4">
+                <div class="form-element-list">
+                    <h4>Step 1 of 7</h4>
+                    <h3>Personal Details</h3>
+                    <form id="detailsForm">
+                        <div class="col-md-12">
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                      <label for="first_name">First Name:<span class="special_class">* </span></label>
+                                      <input  type="text" class="form-control" id="first_name" name="first_name" pattern="^\S.*$" value="{{ user.personal.first_name }}" required/>
+                                      <div class="invalid-feedback"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                      <label for="last_name">Last Name:<span class="special_class">* </span></label>
+                                      <input type="text"class="form-control" id="last_name" name="last_name" pattern="^\S.*$" value="{{ user.personal.last_name }}" required/>
+                                      
+                                      <div class="invalid-feedback"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                      <label for="other_name">Other Name:</label>
+                                      <input  type="text"  class="form-control"  id="other_name" name="other_name"  pattern="^\S.*$" value="{{ user.personal.other_name }}" required/>
+                                       
+                                      <div class="invalid-feedback"></div>
+                                    </div>
+                                </div>
+                               
+                                
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="sr-only control-label" for="id_birth_date">Date of Birth: <span class="special_class">* </span></label>
+                                        <input type="date" name="birth_date" class="form-control datepicker" id="id_birth_date" title="Date of Birth" placeholder="YYYY-MM-DD" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="sr-only control-label" for="id_id_number">ID Number:<span class="special_class">* </span></label>
+                                        <input type="text" name="id_number" maxlength="200"  class="form-control" placeholder="National ID/Passport Number" title="" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                       <label class="sr-only control-label" for="id_kra_pin">KRA PIN:<span class="special_class">* </span></label>
+                                       <input type="text" name="id_kra_pin" maxlength="200" class="form-control" placeholder="KRA PIN" title="" id="id_kra_pin" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="sr-only control-label" for="id_gender">Gender:<span class="special_class">* </span><select name="gender" class="form-control" title="" required>
+                                                <option value="" selected></option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                        </select>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="sr-only control-label" for="id_Nationality">Nationality:<span class="special_class">* </span></label>
+                                        <input type="text" name="Nationality" maxlength="300"  class="form-control" placeholder="Nationality" title="" id="id_Nationality">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="sr-only control-label" for="id_town">City/Town:</label>
+                                        <input type="text" name="town" maxlength="50"  class="form-control" placeholder="City/Town"title="" required id="id_town">    
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="sr-only control-label" for="id_mobile_number">Mobile Number:</label>
+                                        <input type="text" name="number" maxlength="300" pattern="^(07|01)\d{8}$" max="10"  class="form-control" placeholder="mobile Number" title="" id="id_mobile_number">                                                 
+                                     </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="id_marital_Status">Marital Status</label>
+                                        <select id="id_marital_Status" class="form-control">
+                                          <option disabled selected value="{{ user.personal.marital_status }}"></option>
+                                          <option value="Single">Single</option>
+                                          <option value="Married">Married</option>
+                                          <option value="Divorced">Divorced</option>
+                                          <option value="Widowed">Widowed</option>
+                                        </select>
+                                     
+                                      <div class="invalid-feedback">Select one</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                      <label for="nssf_number">Nssf Number</label>
+                                      <input type="text" class="form-control"  id="nssf_number"  name="nssf_number" value="{{ user.personal.nssf_number }}"  required/>
+                                       
+                                      <div class="invalid-feedback"></div>
+                                    </div>
+                                  </div>
+                                
+
+                                
+                                <div class="col-md-4">                                                                                                                                                                      
+                                    <div class="form-group">
+                                        <label for="id_county">Home County:</label>
+                                        <input list="counties"   class="form-control"  name="county" id="county" Placeholder="Type in your home county">
+                                        <datalist id="counties">
+    
+                                              <option value="Nairobi">
+    
+                                              <option value="Nyeri">
+    
+                                              <option value="Kirinyaga">
+    
+                                              <option value="Kiambu">
+                                            
+                                              <option value="Muranga">
+    
+                                              <option value="Nyandarua">
+    
+                                              <option value="Mombasa">
+    
+                                              <option value="Kwale">
+    
+                                              <option value="Kilifi">
+    
+                                              <option value="Tana River">
+    
+                                              <option value="Lamu">
+    
+                                              <option value="Busia">
+    
+                                              <option value="Bungoma">
+    
+                                              <option value="Vihiga">
+    
+                                              <option value="Kakamega">
+    
+                                              <option value="Makueni">
+    
+                                              <option value="Machakos">
+    
+                                              <option value="Kitui">
+    
+                                              <option value="Embu">
+    
+                                              <option value="Tharaka Nithi">
+    
+                                              <option value="Meru">
+    
+                                              <option value="Isiolo">
+    
+                                              <option value="Marsabit">
+    
+                                              <option value="Kisii">
+    
+                                              <option value="Nyamira">
+    
+                                              <option value="Migori">
+    
+                                              <option value="Homa Bay">
+    
+                                              <option value="Siaya">
+    
+                                              <option value="Kisumu">
+    
+                                              <option value="Kericho">
+    
+                                              <option value="Taita Taveta">
+    
+                                              <option value="Garissa">
+    
+                                              <option value="Wajir">
+    
+                                              <option value="Mandera">
+    
+                                              <option value="Turkana">
+    
+                                              <option value="West Pokot">
+    
+                                              <option value="Trans Nzoia">
+    
+                                              <option value="Kajiado">
+    
+                                              <option value="Narok">
+    
+                                              <option value="Nakuru">
+    
+                                              <option value="Baringo">
+    
+                                              <option value="Laikipia">
+    
+                                              <option value="Samburu">
+    
+                                              <option value="Uasin Gishu">
+    
+                                              <option value="Elgeyo Marakwet">
+    
+                                              <option value="Nandi">
+    
+                                              <option value="Bomet">      
+    
+                                        </datalist>
+                                        </label>    
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="id_disabledStatus">Do you have a disability?</label>
+                                
+                                        <label for="yes">Yes</label>
+                                        <input type="radio" name="disability" id="yes" onclick="showDescription()"/>
+                                        <label for="no">No</label>
+                                        <input type="radio" name="disability" id="no" onclick="hideDescription()"/>
+                                      <div id="descriptionField" class="hidden">
+                                       <label for="id_description">Please describe your disability:</label><br>
+                                       <input type="text"  maxlength="50"  class="form-control" required id="id_description">    
+                                
+                                      </div>
+                                    </div>  
+                                </div>
+                              
+                            </div>
+                        </div>
+
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="button-group">
+                                       <button class="btn btn-success nextBtn btn-lg" type="submit" name="saved">Save
+                                       </button>
+                                       <form action="{% url 'error' %}" method="get"> 
+                                        <button type="submit" name="proceed" class="btn btn-info nextBtn btn-lg"></a>Proceed 
+                                       
+                                         </button>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        
+                    </form>
+                </div>
+            </div>
+            </div>
+        </div>
+        <script>
+            /*beginning of script for disability*/
+            function showDescription() {
+             document.getElementById('descriptionField').classList.remove('hidden');
+            }
+
+            function hideDescription() {
+              document.getElementById('descriptionField').classList.add('hidden');
+            }
+
+            document.getElementById('detailsForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        /*end*/
+    
+        // Get form values
+        const first_name = document.getElementById('first_name').value;
+        const last_name = document.getElementById('last_name').value;
+        const other_name = document.getElementById('other_name').value;
+        const birth_date = document.getElementById('birth_date').value;
+        const id_number = document.getElementById('id_number').value;
+        const id_kra_pin = document.getElementById('id_kra_pin').value;
+        const id_gender = document.getElementById('id_gender').value;
+        const id_Nationality = document.getElementById('id_Nationality').value;
+        const id_town = document.getElementById('id_town').value;
+        const id_mobile_number = document.getElementById('id_mobile_number').value;
+        const maritalStatus = document.getElementById('maritalStatus').value;
+        const county = document.getElementById('county').value;
+        const disability = document.querySelector('input[name="disability"]:checked').value;
+    
+        
+    });
+    //end of the submit button save record details
+     //start of max number
+    document.getElementById('detailsForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Get form values
+    const quantity = document.getElementById('id_mobile_number').value;
+    //end
+   
+});
+
+        </script> 
+    </body>
+</html>
+{% endblock %}
+                
+                            
+                            
+                            
+                                   
+                                       
+
+                           
+                           
+                           
+        
+                         
+     

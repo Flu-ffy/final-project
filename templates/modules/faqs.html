@@ -1,0 +1,297 @@
+
+{% extends 'layout/base.html' %}
+{% load static %}.
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset-utf-8>
+    <meta name="viewport" , content="width=device-width, initial-scale=1.0" >
+
+ 
+  <title>{% block title %}FAQs - My Website{% endblock %}</title>
+  <!-- Favicons -->
+  <link href="{% static 'favicons/favicon.ico' %}" rel="icon">
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css">
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+    <!-- Template Main CSS File -->
+    <style>
+      body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: #11a5b2;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+  
+  
+      .navigation-section {
+        margin-left: auto;
+        padding: 10px;
+      }
+      .card-row {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        align-items: center;
+      }
+  
+      .card {
+        border: none;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+  
+      .card-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #ffc107;
+      }
+  
+      .card-body {
+        padding: 20px;
+        width:auto;
+
+      }
+      .accordion-section {
+        margin-bottom: 20px;
+        margin-top: 20px;
+        color: #000;
+      }
+  
+      .accordion-item {
+        margin-top: 20px;
+        color: #000;
+      }
+  
+      .accordion-button {
+        border: none !important;
+        background-color: transparent !important;
+        color: #000; /* Set the desired text color */
+      }
+  
+      .accordion-button:hover,
+      .accordion-button:focus {
+        background-color: transparent !important;
+        border-color: #ffc107 !important; 
+      }
+    </style>
+  </head>
+
+  <body>
+
+    {% block content %}
+    <!-- Navigation Links Section -->
+    
+
+  
+  
+      <h1>Frequently Asked Questions</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Pages</li>
+          <li class="breadcrumb-item active">Frequently Asked Questions</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+   
+   <section class="accordion-section">
+     <div class="container">
+        <h5 class="card-title">Basic Questions</h5>
+  
+        <!-- Single Accordion -->
+        <div class="col-md-12">
+            <div class="accordion" id="root-accordion">
+
+                <!-- Accordion Item 1 -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card accordion-item">
+                            <div class="card-header" id="headingOne1">
+                                <h2 class="mb-0">
+                                    <button class="accordion-button" type="button" data-toggle="collapse" data-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1" data-parent="#root-accordion">
+                                      Can I upload my resume to the portal?
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseOne1" class="collapse" aria-labelledby="headingOne1" data-parent="#root-accordion">
+                                <div class="card-body">
+                                  <p>
+                                    Yes, you can upload your resume to the portal. After logging into your account, 
+                                    navigate to the "My Profile" section and click on the "Upload Resume" button. 
+                                    Follow the prompts to select and upload your resume file. This will make it easier for employers to find 
+                                    and review your qualifications when you apply for jobs on the portal.
+
+                                  </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 2 -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card accordion-item">
+                            <div class="card-header" id="headingTwo2">
+                                <h2 class="mb-0">
+                                    <button class="accordion-button" type="button" data-toggle="collapse" data-target="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo2" data-parent="#root-accordion">
+                                      How do I sign up for an account?
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo2" data-parent="#root-accordion">
+                                <div class="card-body">
+                                  <p>
+                                    To sign up for an account, simply click on the "Sign Up" button on the homepage and fill 
+                                    out the required information, including your email address, password, and basic personal details. 
+                                    Once you submit the form, you'll receive a confirmation email to activate your account.
+                                  </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 3 -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card accordion-item">
+                            <div class="card-header" id="headingThree3">
+                                <h2 class="mb-0">
+                                    <button class="accordion-button" type="button" data-toggle="collapse" data-target="#collapseThree3" aria-expanded="false" aria-controls="collapseThree3" data-parent="#root-accordion">
+                                      What happens after I submit my application?
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseThree3" class="collapse" aria-labelledby="headingThree3" data-parent="#root-accordion">
+                                <div class="card-body">
+                                    <p>
+                                      After you submit your application, it undergoes a review process by the hiring team or recruiter. 
+                                      This review process may vary depending on the employer's recruitment procedures. 
+                                      Typically, your application is screened to ensure it meets the job requirements and qualifications. 
+                                      If your application is selected for further consideration, 
+                                      you may be contacted for an interview or additional assessments.
+                                    </p>
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 4 -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card accordion-item">
+                            <div class="card-header" id="headingFour4">
+                                <h2 class="mb-0">
+                                    <button class="accordion-button" type="button" data-toggle="collapse" data-target="#collapseFour4" aria-expanded="false" aria-controls="collapseFour4" data-parent="#root-accordion">
+                                      I'm experiencing difficulties uploading my resume. What should I do?
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseFour4" class="collapse" aria-labelledby="headingFour4" data-parent="#root-accordion">
+                                <div class="card-body">
+                                    <p>
+                                      Ensure that your resume is saved in a compatible file format, such as PDF, DOC, or DOCX. 
+                                      If your resume is in a different format, 
+                                      try converting it to one of these formats and then attempt to upload it again.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 5 -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card accordion-item">
+                            <div class="card-header" id="headingFive5">
+                                <h2 class="mb-0">
+                                    <button class="accordion-button" type="button" data-toggle="collapse" data-target="#collapseFive5" aria-expanded="false" aria-controls="collapseFive5" data-parent="#root-accordion">
+                                      How secure is my personal information on this portal?
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseFive5" class="collapse" aria-labelledby="headingFive5" data-parent="#root-accordion">
+                                <div class="card-body">
+                                    <p>
+                                      Access to your personal information is restricted to authorized personnel who require access for legitimate business purposes.
+                                       We enforce strict access controls and authentication mechanisms to prevent unauthorized access to your data.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 6 -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card accordion-item">
+                            <div class="card-header" id="headingSix6">
+                                <h2 class="mb-0">
+                                    <button class="accordion-button" type="button" data-toggle="collapse" data-target="#collapseSix6" aria-expanded="false" aria-controls="collapseSix6" data-parent="#root-accordion">
+                                      How do I apply for a job?
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseSix6" class="collapse" aria-labelledby="headingSix6" data-parent="#root-accordion">
+                                <div class="card-body">
+                                    <p>
+                                      Search for Jobs: Start by browsing the available job listings on our portal. 
+                                      You can use filters to narrow down your search based on criteria such as location, industry, or job type.
+
+                                       Review Job Details: Click on a job listing to view more details about the position, 
+                                      including the job description, requirements, and application instructions. 
+                                      Make sure the job aligns with your skills and interests before proceeding.
+
+                                      Submit Your Application: If you're interested in applying for the job, 
+                                      follow the application instructions provided in the job listing. 
+                                      This may involve filling out an online application form, uploading your resume and cover letter, 
+                                      or providing additional documents or information requested by the employer.
+
+                                       Review and Confirm: Before submitting your application, review all the information you've provided to ensure it's accurate and complete. Double-check for any spelling or formatting errors in your resume and cover letter.
+
+                                       Submit Application: Once you're satisfied with your application, click the "Submit" or "Apply" button to send it to the employer. Your application will be forwarded to the hiring team for review.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+      </div>
+    </section>
+
+  
+ 
+    <script>
+       document.getElementById('currentYear').innerText = new Date().getFullYear();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+  </body>
+
+</html>
+{% endblock %}
