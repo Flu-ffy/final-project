@@ -7,3 +7,6 @@ def education(request):
 
 def add_documents(request):
     return render(request, 'modules/add_documents.html')
+
+def work_experience(request):
+    return render(request, 'modules/workexperience.html')

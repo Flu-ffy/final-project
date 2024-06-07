@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work Experience Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h2 class="mt-5 mb-4">Work Experience</h2>
+    <form id="workExperienceForm">
+      <div id="experienceFields">
+        <div class="mb-3">
+          <label for="companyName" class="form-label">Company Name:</label>
+          <input type="text" class="form-control" name="companyName[]" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="position" class="form-label">Position:</label>
+          <input type="text" class="form-control" name="position[]" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="startDate" class="form-label">Start Date:</label>
+          <input type="date" class="form-control" name="startDate[]" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="endDate" class="form-label">End Date:</label>
+          <input type="date" class="form-control" name="endDate[]" required>
+        </div>
+
+        <div class="mb-5">
+          <label for="responsibilities" class="form-label">Responsibilities:</label>
+          <textarea class="form-control" name="responsibilities[]" rows="4" required></textarea>
+        </div>
+      </div>
+      
+      <button type="button" class="btn btn-primary mb-3 mt-1 me-2" id="addExperience">Add Experience</button>
+      <button type="submit" class="btn btn-success mb-3 mt-1">Submit</button>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+  <script>
+    document.getElementById('addExperience').addEventListener('click', function() {
+        var newExperience = `
+        <div class="experience mt-7">
+        <div class="mb-3">
+        <label for="companyName" class="form-label">Company Name</label>
+        <input type="text" class="form-control" name="companyName[]" required>
+      </div>
+    
+      <div class="mb-3">
+        <label for="position" class="form-label">Position</label>
+        <input type="text" class="form-control" name="position[]" required>
+      </div>
+    
+      <div class="mb-3">
+        <label for="startDate" class="form-label">Start Date</label>
+        <input type="date" class="form-control" name="startDate[]" required>
+      </div>
+    
+      <div class="mb-3">
+        <label for="endDate" class="form-label">End Date</label>
+        <input type="date" class="form-control" name="endDate[]" required>
+      </div>
+    
+      <div class="mb-5">
+        <label for="responsibilities" class="form-label">Responsibilities</label>
+        <textarea class="form-control" name="responsibilities[]" rows="4" required></textarea>
+      </div>
+        </div>`;
+    
+        var div = document.createElement('div');
+        div.innerHTML = newExperience;
+        var experienceFields = document.getElementById('experienceFields');
+        experienceFields.appendChild(div.firstElementChild);
+    });
+    
+  </script>
+</body>
+</html>
