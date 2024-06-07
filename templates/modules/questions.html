@@ -1,0 +1,128 @@
+{% extends 'layout/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+    {% block content %}
+<head>
+    <meta-charset-utf-8 >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        #timer {
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #question-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .question {
+            margin-bottom: 20px;
+            display: none; /* Initially hide questions */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        .card-header {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .next-btn {
+            display: none; /* Initially hide next button */
+        }
+    </style>
+</head>
+<body>
+
+<div id="timer">Time Left: <span id="time">00:00</span></div>
+
+<div id="question-container">
+    <div class="question" id="question1">
+        <div class="card-header">Question 1:</div>
+        <p>What is the capital of France?</p>
+        <input type="radio" name="question1" value="Paris"> Paris<br>
+        <input type="radio" name="question1" value="London"> London<br>
+        <input type="radio" name="question1" value="Berlin"> Berlin<br>
+        <input type="radio" name="question1" value="Rome"> Rome<br>
+    </div>
+    
+    <div class="question" id="question2">
+        <div class="card-header">Question 2:</div>
+        <p>What is the capital of Japan?</p>
+        <input type="radio" name="question2" value="Tokyo"> Tokyo<br>
+        <input type="radio" name="question2" value="Seoul"> Seoul<br>
+        <input type="radio" name="question2" value="Beijing"> Beijing<br>
+        <input type="radio" name="question2" value="Osaka"> Osaka<br>
+    </div>
+    
+    <div class="question" id="question3">
+        <div class="card-header">Question 3:</div>
+        <p>What is 2 + 2?</p>
+        <input type="text" name="question3">
+    </div>
+    
+    <!-- Add more questions here -->
+</div>
+
+<button class="next-btn">Next</button>
+
+<script>
+    var currentQuestionIndex = 1;
+    var questions = document.querySelectorAll('.question');
+    var nextBtn = document.querySelector('.next-btn');
+
+    // Set the time limit in seconds
+    var timeLimit = 300; // 5 minutes
+    var timerDisplay = document.getElementById('time');
+
+    // Function to format time as MM:SS
+    function formatTime(seconds) {
+        var minutes = Math.floor(seconds / 60);
+        var remainingSeconds = seconds % 60;
+        return (minutes < 10 ? '0' : '') + minutes + ':' + (remainingSeconds < 10 ? '0' : '') + remainingSeconds;
+    }
+
+    // Update the timer every second
+    var timeLeft = timeLimit;
+    setInterval(function() {
+        if (timeLeft <= 0) {
+            timerDisplay.textContent = '00:00';
+            // Optionally, handle time's up event here
+        } else {
+            timerDisplay.textContent = formatTime(timeLeft);
+            timeLeft--;
+        }
+    }, 1000);
+
+    // Show the first question
+    questions[currentQuestionIndex - 1].style.display = 'block';
+
+    document.querySelectorAll('input[type="radio"], input[type="text"]').forEach(function(input) {
+        input.addEventListener('change', function() {
+            // Enable next button when an answer is provided
+            nextBtn.style.display = 'block';
+        });
+    });
+
+    nextBtn.addEventListener('click', function() {
+        // Hide the current question
+        questions[currentQuestionIndex - 1].style.display = 'none';
+
+        // Move to the next question
+        currentQuestionIndex++;
+
+        // If there are more questions, show the next one
+        if (currentQuestionIndex <= questions.length) {
+            questions[currentQuestionIndex - 1].style.display = 'block';
+            // Hide next button for the new question
+            nextBtn.style.display = 'none';
+        } else {
+            // Optionally, submit the quiz or show a completion message
+            alert('End of questions. Submit the quiz!');
+        }
+    });
+</script>
+
+</body>
+</html>
+{% endblock %}
